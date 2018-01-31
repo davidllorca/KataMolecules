@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 
-    static String node = "[\\(\\[\\{].+[\\)\\]\\}]\\d*";
+    static String node = "[\\(\\[\\{][^\\(\\[\\{\\)\\]\\}].+[\\)\\]\\}]\\d*";
     static String atom = "[A-Z]{1}[a-z]?\\d*";
     static String coeficient = "\\d*$";
     static String beginNode = "[\\(\\[\\{]";
@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         String fremySalt = "K4[ON(SO3)2Mg(SO3)2]2H3";
+
         String test = "(Mg23)";
         String test2 = "[Mg23]H(N2O)";
 //        getAtoms(fremySalt);
@@ -27,6 +28,7 @@ public class Main {
         while(hasNodes(input)) {
 
             List<String> nodes = capture(node, input);
+            List<String> atoms = capture(atom, input);
             String[] list = input.split(node);
 
             for (int i = 0; i < list.length; i++) {
